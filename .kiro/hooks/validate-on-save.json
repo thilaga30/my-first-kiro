@@ -1,0 +1,17 @@
+{
+  "name": "Foods of Tamil Nadu — Validate on Save",
+  "version": "1.0.0",
+  "description": "Runs the Vitest test suite and Vite production build whenever a source file in the foods-of-tamil-nadu project is saved. Catches test failures and build errors immediately after edits.",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "foods-of-tamil-nadu/src/**/*.js",
+      "foods-of-tamil-nadu/src/**/*.jsx",
+      "foods-of-tamil-nadu/src/**/*.css"
+    ]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "cd my-first-kiro/foods-of-tamil-nadu && npx vitest run --reporter=verbose 2>&1 && npx vite build 2>&1"
+  }
+}
