@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "food-dataset": {
+      "command": "node",
+      "args": ["foods-of-tamil-nadu/mcp-server/food-dataset-server.js"],
+      "disabled": false,
+      "autoApprove": ["list_foods", "get_food", "validate_dataset", "filter_foods"],
+      "description": "Local MCP server for the Foods of Tamil Nadu dataset. Exposes list, inspect, validate, and filter tools over the local foods.js data file. No external services or API keys required."
+    }
+  }
+}
