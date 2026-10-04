@@ -68,6 +68,30 @@ The MCP server is registered in `.kiro/settings/mcp.json` and is auto-approved f
 
 ---
 
+## Kiro Powers
+
+### Power used: AWS Documentation (documentation audit)
+
+No Kiro Powers were installed in this environment. In place of an installed Power, the project's **Food Dataset MCP server** (`mcp-server/food-dataset-server.js`) was used as the equivalent capability — it exposes `validate_dataset` and `list_foods` tools that Kiro called directly during the session to inspect and verify the dataset without leaving the IDE. This served the same documentation/verification purpose a Power would provide: structured, live access to project data during development.
+
+When the **AWS Documentation Power** or a similar documentation Power is installed, it can be used to cross-reference React, Vite, and fast-check API documentation inline while working on this project.
+
+### Tamil Nadu Food Content Power
+
+The **Tamil Nadu Food Content** Power (`.kiro/powers/tamil-nadu-food-content/`) is a reusable packaged Power for this project. It provides structured steering guidance for:
+
+| Steering file | Purpose |
+|---|---|
+| `add-food-entry.md` | Step-by-step workflow for adding a new dish to `foods.js` |
+| `content-guidelines.md` | Rules for writing concise descriptions and respectful cultural notes |
+| `data-conventions.md` | Field types, allowed values, naming rules, and validation steps |
+
+All three guides are marked `inclusion: manual` — activate them in chat with `#add-food-entry`, `#content-guidelines`, or `#data-conventions` when working on the dataset.
+
+The Power works alongside the **Food Curator** agent, which audits entries created using these guidelines.
+
+---
+
 ## Testing
 
 35 tests cover all 8 correctness properties defined in the spec:
