@@ -6,7 +6,7 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
 
 ## Tasks
 
-- [ ] 1. Scaffold project with Vite + React + Vitest
+- [x] 1. Scaffold project with Vite + React + Vitest
   - Run `npm create vite@latest` with the React + JavaScript template
   - Install `vitest`, `@vitest/ui`, `jsdom`, `@testing-library/react`, `@testing-library/user-event`, and `fast-check` as dev dependencies
   - Configure `vite.config.js` with the Vitest `test` block (`environment: "jsdom"`, `globals: true`)
@@ -15,15 +15,15 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
   - Delete Vite boilerplate files not needed (default `App.css` content, `assets/react.svg`, placeholder JSX in `App.jsx`)
   - _Requirements: NFR — Technology Stack_
 
-- [ ] 2. Create the Food Dataset
-  - [ ] 2.1 Implement `src/data/foods.js` with all 12 dishes
+- [x] 2. Create the Food Dataset
+  - [x] 2.1 Implement `src/data/foods.js` with all 12 dishes
     - Define a `rawFoods` array containing all 12 dish objects: Pongal, Idli, Dosa, Parotta, Kothu Parotta, Chettinad Chicken, Sambar, Rasam, Paniyaram, Kuzhi Paniyaram, Kari Dosa, Jigarthanda
     - Each object must include all required fields: `id`, `name`, `image`, `description`, `region`, `category`, `isVegetarian`, `ingredients`, `culturalNote`
     - `isVegetarian` must be `false` for Chettinad Chicken and Kothu Parotta, `true` for all others
     - Export `FOODS` as `Object.freeze(rawFoods.map(dish => Object.freeze(dish)))`
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5_
 
-  - [ ]* 2.2 Write unit tests for Food Dataset structure
+  - [-]* 2.2 Write unit tests for Food Dataset structure
     - Verify `FOODS` contains exactly 12 dishes
     - Verify each dish has all required fields
     - Verify all `id` values are unique
@@ -39,8 +39,8 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
     - Tag comment: `// Feature: foods-of-tamil-nadu, Property 1: Dish Schema Invariant`
     - **Validates: Requirements 1.2, 13.2, 13.4, 13.5, 13.6**
 
-- [ ] 3. Implement pure utility functions
-  - [ ] 3.1 Implement `src/utils/filterFoods.js`
+- [x] 3. Implement pure utility functions
+  - [x] 3.1 Implement `src/utils/filterFoods.js`
     - Write `searchFoods(dishes, searchText)` — returns all dishes when `searchText` trims to `""`; otherwise filters by case-insensitive name containment
     - Write `filterFoods(dishes, filter)` — applies the predicate table from the design document for `"All"`, `"Vegetarian"`, `"Non-Vegetarian"`, and each category string
     - Write `applyDiscovery(dishes, searchText, filter)` — composes both: `filterFoods(searchFoods(dishes, searchText), filter)`
@@ -87,8 +87,8 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
 - [ ] 4. Checkpoint — ensure all dataset and utility tests pass
   - Run `npm test -- --run` and confirm all tests pass; resolve any failures before continuing.
 
-- [ ] 5. Implement `useFavourites` hook
-  - [ ] 5.1 Create `src/hooks/useFavourites.js`
+- [x] 5. Implement `useFavourites` hook
+  - [x] 5.1 Create `src/hooks/useFavourites.js`
     - Internal state: `Set<string>` of dish `id` values
     - On mount: read `localStorage.getItem("foods-tn-favourites")`, parse JSON, validate it is an array of strings, initialise the Set; catch all errors silently and fall back to empty Set
     - `toggleFavourite(id)`: add if absent, remove if present
@@ -110,14 +110,14 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
     - Tag comments: `// Feature: foods-of-tamil-nadu, Property 6: Favourites Set Never Contains Duplicates` and `// Feature: foods-of-tamil-nadu, Property 7: Favourites localStorage Round-Trip`
     - **Validates: Requirements 17.2, 17.5, 8.5, 8.6, 17.6**
 
-- [ ] 6. Implement `useDiscovery` hook
+- [x] 6. Implement `useDiscovery` hook
   - Create `src/hooks/useDiscovery.js`
   - Hold `searchText` (default `""`) and `activeFilter` (default `"All"`) state
   - Derive `visibleDishes` via `applyDiscovery(FOODS, searchText, activeFilter)` on every render
   - Return `{ searchText, setSearchText, activeFilter, setActiveFilter, visibleDishes }`
   - _Requirements: 5.1, 5.2, 5.3, 6.2, 6.7_
 
-- [ ] 7. Implement Navbar component
+- [x] 7. Implement Navbar component
   - Create `src/components/Navbar.jsx`
   - Props: `favouriteCount: number`
   - Display site title "Flavours of Tamil Nadu" as a brand link
@@ -128,7 +128,7 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
   - Add `aria-label` to the hamburger button; add visible focus indicators to all interactive elements
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 10.1, 10.8_
 
-- [ ] 8. Implement Hero component
+- [x] 8. Implement Hero component
   - Create `src/components/Hero.jsx`
   - Props: `onExploreClick: () => void`
   - Render heading "Flavours of Tamil Nadu", introductory paragraph, and "Explore Foods" CTA button
@@ -136,15 +136,15 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
   - Apply Tamil Nadu food-themed visual design
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6_
 
-- [ ] 9. Implement SearchBar and FilterBar components
-  - [ ] 9.1 Create `src/components/SearchBar.jsx`
+- [x] 9. Implement SearchBar and FilterBar components
+  - [x] 9.1 Create `src/components/SearchBar.jsx`
     - Props: `value: string`, `onChange: (text: string) => void`
     - Render a labelled `<input type="text">` with placeholder text
     - Call `onChange` on every `input` event
     - Add visible focus indicator
     - _Requirements: 5.1, 5.5, 5.6, 10.4, 10.5_
 
-  - [ ] 9.2 Create `src/components/FilterBar.jsx`
+  - [x] 9.2 Create `src/components/FilterBar.jsx`
     - Props: `activeFilter: string`, `onChange: (filter: string) => void`
     - Render filter buttons for: All, Vegetarian, Non-Vegetarian, Breakfast, Main Course, Snack, Dessert/Drink
     - Visually highlight the active filter button
@@ -152,7 +152,7 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
     - Add visible focus indicators; apply smooth CSS transitions on active state change
     - _Requirements: 6.1, 6.9, 6.10, 10.5, 10.9, 12.5_
 
-- [ ] 10. Implement FoodCard component
+- [x] 10. Implement FoodCard component
   - Create `src/components/FoodCard.jsx`
   - Props: `dish: Dish`, `isFavourite: boolean`, `onToggleFavourite: () => void`, `onClick: () => void`
   - Display: dish name, image (`alt` = dish name), short description, region, category badge, vegetarian/non-vegetarian badge, favourite toggle button (heart icon)
@@ -163,18 +163,18 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
   - Add `aria-label` to icon-only favourite button; add visible focus indicator
   - _Requirements: 4.6, 7.1, 8.1, 8.4, 10.2, 10.5, 10.8, 12.1, 12.2, 12.6_
 
-- [ ] 11. Implement FoodGrid and EmptyState components
-  - [ ] 11.1 Create `src/components/EmptyState.jsx`
+- [x] 11. Implement FoodGrid and EmptyState components
+  - [x] 11.1 Create `src/components/EmptyState.jsx`
     - No props; render a friendly message indicating no dishes match the current search/filter
     - _Requirements: 4.7, 5.4, 6.8_
 
-  - [ ] 11.2 Create `src/components/FoodGrid.jsx`
+  - [x] 11.2 Create `src/components/FoodGrid.jsx`
     - Props: `dishes: Dish[]`, `favourites: Set<string>`, `onToggleFavourite`, `onCardClick`
     - Render a CSS Grid container with responsive column breakpoints (1 / 2 / 3 columns)
     - Map over `dishes` and render a `FoodCard` for each; render `EmptyState` when `dishes` is empty
     - _Requirements: 4.2, 4.3, 4.4, 4.5, 4.7, 11.1, 11.2_
 
-- [ ] 12. Implement FoodDetailModal component
+- [x] 12. Implement FoodDetailModal component
   - Create `src/components/FoodDetailModal.jsx`
   - Props: `dish: Dish | null`, `isFavourite: boolean`, `onToggleFavourite: () => void`, `onClose: () => void`
   - Render nothing (return `null`) when `dish` is `null`
@@ -189,14 +189,14 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
   - Ensure `max-height: 90vh; overflow-y: auto` for small viewports
   - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 10.7, 10.8, 11.5, 12.3, 12.4_
 
-- [ ] 13. Implement Footer component
+- [x] 13. Implement Footer component
   - Create `src/components/Footer.jsx`
   - Display site name "Flavours of Tamil Nadu" and attribution line referencing Kiro University 2026
   - Apply Tamil Nadu-themed design consistent with the rest of the app
   - Use responsive layout that renders correctly at 320px, 768px, and 1280px
   - _Requirements: 9.1, 9.2, 9.3, 9.4_
 
-- [ ] 14. Wire everything together in App.jsx
+- [x] 14. Wire everything together in App.jsx
   - Rewrite `src/App.jsx` as the single layout shell
   - Instantiate `useFavourites()` and `useDiscovery()`
   - Hold `selectedDish: Dish | null` state for modal open/close
@@ -206,7 +206,7 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
   - Use semantic HTML5 elements (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`)
   - _Requirements: 2.2, 3.4, 4.1, 8.8, 10.1, 12.7_
 
-- [ ] 15. Apply CSS and responsive styling
+- [x] 15. Apply CSS and responsive styling
   - Write global CSS in `src/index.css`: CSS custom properties for colour palette, typography, and spacing consistent with Tamil Nadu theme
   - Implement responsive Navbar layout: flex row ≥ 768px, hamburger + dropdown < 768px; sticky positioning
   - Implement Hero section styles: full-width banner, Tamil Nadu food imagery/decoratives, responsive at 320px / 768px / 1280px
@@ -220,7 +220,7 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
   - Ensure all interactive elements have visible focus indicators
   - _Requirements: 2.3, 2.4, 2.7, 2.8, 3.5, 3.6, 4.3, 4.4, 4.5, 10.5, 10.6, 11.1, 11.2, 11.3, 11.4, 11.6, 12.1, 12.2, 12.3, 12.4, 12.5, 12.6_
 
-- [ ] 16. Final checkpoint — run tests and verify basics
+- [x] 16. Final checkpoint — run tests and verify basics
   - Run `npm test -- --run` and confirm all unit and property tests pass
   - Verify the dev server starts without errors (`npm run dev`)
   - Manually confirm: modal opens/closes, focus trap works, hamburger toggles, favourites persist across page refresh, empty state shows on no-match search
