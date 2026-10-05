@@ -2,7 +2,8 @@ const rawFoods = [
   {
     id: 'pongal',
     name: 'Pongal',
-    image: 'https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=600&q=80',
+    // Source: Wikimedia Commons — File:Venpongal.jpg (CC BY-SA 4.0, KSweth) — verified Ven Pongal
+    image: 'https://upload.wikimedia.org/wikipedia/commons/c/cc/Venpongal.jpg',
     description: 'A sacred harvest dish of creamy rice and lentils simmered with ghee, black pepper, cumin and cashews. The quintessential Tamil breakfast.',
     region: 'Statewide',
     category: 'Breakfast',
@@ -13,7 +14,8 @@ const rawFoods = [
   {
     id: 'idli',
     name: 'Idli',
-    image: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=600&q=80',
+    // Source: Wikimedia Commons — File:Idli_with_sambar_and_chutney.jpg (CC BY-SA 4.0)
+    image: 'https://upload.wikimedia.org/wikipedia/commons/f/f0/Idli_with_sambar_and_chutney.jpg',
     description: 'Pillowy steamed rice cakes fermented overnight, served with sambar and coconut chutney. A cornerstone of Tamil breakfast culture.',
     region: 'Statewide',
     category: 'Breakfast',
@@ -24,7 +26,8 @@ const rawFoods = [
   {
     id: 'dosa',
     name: 'Dosa',
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&q=80',
+    // Source: Wikimedia Commons — File:Plain_Dosa.jpg (CC BY-SA 4.0, Sivasankari)
+    image: 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Plain_Dosa.jpg',
     description: 'A paper-thin, crisp fermented crepe made from rice and lentil batter. Golden and lacey on the outside, soft within — best eaten straight off the griddle.',
     region: 'Statewide',
     category: 'Breakfast',
@@ -35,7 +38,8 @@ const rawFoods = [
   {
     id: 'parotta',
     name: 'Parotta',
-    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80',
+    // Source: Wikimedia Commons — File:Parotta.jpg (CC BY-SA 2.0, Charles Haynes)
+    image: 'https://upload.wikimedia.org/wikipedia/commons/0/0b/Parotta.jpg',
     description: 'Flaky, layered flatbread made from maida, beaten and folded repeatedly to create hundreds of gossamer layers. A true Tamil street food icon.',
     region: 'Statewide',
     category: 'Main Course',
@@ -46,7 +50,8 @@ const rawFoods = [
   {
     id: 'kothu-parotta',
     name: 'Kothu Parotta',
-    image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80',
+    // Source: Wikimedia Commons — File:Kothu_Parotta.jpg (CC BY-SA 4.0, Nittu22) — verified shredded parotta dish
+    image: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Kothu_Parotta.jpg',
     description: 'Shredded parotta tossed on a sizzling griddle with eggs, spiced masala, onions and chillies. The rhythmic clanging of the iron spatulas is its signature soundtrack.',
     region: 'Statewide',
     category: 'Main Course',
@@ -57,7 +62,8 @@ const rawFoods = [
   {
     id: 'chettinad-chicken',
     name: 'Chettinad Chicken',
-    image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600&q=80',
+    // Source: Wikimedia Commons — File:Chicken_Chettinad.jpg (CC BY-SA 4.0, Thamizhpparithi Maari) — verified Chettinad chicken curry
+    image: 'https://upload.wikimedia.org/wikipedia/commons/9/9c/Chicken_Chettinad.jpg',
     description: 'A bold, fiery curry from the Chettinad region, built on a complex spice blend including kalpasi (stone flower), marathi mokku and freshly ground pepper.',
     region: 'Chettinad',
     category: 'Main Course',
@@ -68,7 +74,8 @@ const rawFoods = [
   {
     id: 'sambar',
     name: 'Sambar',
-    image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&q=80',
+    // Source: Wikimedia Commons — File:Sambar.jpg (CC BY-SA 4.0, JVRKPRASAD) — verified South Indian sambar
+    image: 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Sambar.jpg',
     description: 'A soul-warming tamarind and lentil broth layered with seasonal vegetables and the deep fragrance of sambar powder. The universal companion to every Tamil meal.',
     region: 'Statewide',
     category: 'Main Course',
@@ -79,7 +86,8 @@ const rawFoods = [
   {
     id: 'rasam',
     name: 'Rasam',
-    image: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=600&q=80',
+    // Source: Wikimedia Commons — File:Rasam_(closeup).jpg (Public Domain, Pamri) — verified South Indian rasam closeup
+    image: 'https://upload.wikimedia.org/wikipedia/commons/f/f8/Rasam_%28closeup%29.jpg',
     description: 'A peppery, tangy broth of tamarind and tomato, thin as consommé and fiery with black pepper and cumin. Drunk as a digestive and consumed with rice.',
     region: 'Statewide',
     category: 'Main Course',
@@ -90,7 +98,8 @@ const rawFoods = [
   {
     id: 'paniyaram',
     name: 'Paniyaram',
-    image: 'https://images.unsplash.com/photo-1695902982628-cff55c73ce63?w=600&q=80',
+    // Source: Wikimedia Commons — File:Paniyaram_from_Tamil_Nadu_JEG4549.jpg (CC BY 4.0, PJeganathan) — verified Tamil Nadu paniyaram
+    image: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Paniyaram_from_Tamil_Nadu_JEG4549.jpg',
     description: 'Soft, round dumplings made from fermented idli batter, cooked in a special cast-iron pan with shallow wells. Crisp outside, fluffy inside.',
     region: 'Statewide',
     category: 'Snack',
@@ -101,7 +110,8 @@ const rawFoods = [
   {
     id: 'kuzhi-paniyaram',
     name: 'Kuzhi Paniyaram',
-    image: 'https://images.unsplash.com/photo-1634864572865-1cf82c6e1122?w=600&q=80',
+    // Source: Wikimedia Commons — File:South_Indian_Sweet_Kuzhi_Paniyaram.JPG (CC BY-SA 4.0, Deviselvam) — verified South Indian sweet kuzhi paniyaram
+    image: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/South_Indian_Sweet_Kuzhi_Paniyaram.JPG',
     description: 'Sweet or savoury spherical dumplings named after their unique well-shaped pan. Made with jaggery and coconut for the sweet version, or spiced for savoury.',
     region: 'Chettinad',
     category: 'Snack',
@@ -112,7 +122,8 @@ const rawFoods = [
   {
     id: 'kari-dosa',
     name: 'Kari Dosa',
-    image: 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=600&q=80',
+    // Source: Wikimedia Commons — File:Kari_Dosa.jpg (CC BY-SA 4.0, Thamizhpparithi Maari) — verified கறி தோசை, Salem, Tamil Nadu
+    image: 'https://upload.wikimedia.org/wikipedia/commons/d/d0/Kari_Dosa.jpg',
     description: 'A thick, spongy dosa variant prepared with rice flour and grated coconut — softer than regular dosa and traditionally served with mutton or chicken curry.',
     region: 'Kongu Nadu',
     category: 'Breakfast',
@@ -123,7 +134,8 @@ const rawFoods = [
   {
     id: 'jigarthanda',
     name: 'Jigarthanda',
-    image: 'https://images.unsplash.com/photo-1541658016709-82535e94bc69?w=600&q=80',
+    // Source: Wikimedia Commons — File:Jigarthanda_drink.jpg (CC BY-SA 4.0, Sowmiyachandru) — verified Jigarthanda milk-based cold drink
+    image: 'https://upload.wikimedia.org/wikipedia/commons/9/92/Jigarthanda_drink.jpg',
     description: 'Madurai\'s legendary chilled drink — layers of almond milk, nannari syrup, milk ice cream and basil seeds in a tall glass. Cool, sweet and utterly refreshing.',
     region: 'Madurai',
     category: 'Dessert/Drink',
