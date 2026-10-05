@@ -33,6 +33,25 @@ describe("Property 1: Dish Schema Invariant", () => {
       expect(CATS).toContain(d.category)
     })
   })
+
+  // Feature: foods-of-tamil-nadu, Property 1: Dish Schema Invariant
+  // Validates: Requirements 1.2, 13.2, 13.4, 13.5, 13.6
+  it("property: every dish sampled from FOODS satisfies all field-presence and type constraints", () => {
+    fc.assert(
+      fc.property(fc.constantFrom(...FOODS), dish => {
+        // All 9 required fields present
+        REQ.forEach(f => expect(dish).toHaveProperty(f))
+        // isVegetarian is a boolean
+        expect(typeof dish.isVegetarian).toBe("boolean")
+        // ingredients is a non-empty array
+        expect(Array.isArray(dish.ingredients)).toBe(true)
+        expect(dish.ingredients.length).toBeGreaterThan(0)
+        // category is one of the 4 allowed values
+        expect(CATS).toContain(dish.category)
+      }),
+      { numRuns: 100 }
+    )
+  })
 })
 
 describe("searchFoods unit tests", () => {
@@ -45,6 +64,30 @@ describe("searchFoods unit tests", () => {
     expect(a).toEqual(searchFoods(FOODS,"IdLi").map(d=>d.id))
   })
   it("no match returns empty", () => { expect(searchFoods(FOODS,"zzz")).toHaveLength(0) })
+})
+
+// Feature: foods-of-tamil-nadu, Task 3.2: Search unit tests
+// Validates: Requirements 14.1, 14.2, 14.3, 14.4
+describe("Search unit tests", () => {
+  it("empty string returns all 12 dishes", () => {
+    expect(searchFoods(FOODS, "")).toHaveLength(12)
+  })
+  it("matching name returns only that dish", () => {
+    const results = searchFoods(FOODS, "Dosa")
+    expect(results.length).toBeGreaterThanOrEqual(1)
+    results.forEach(d => expect(d.name.toLowerCase()).toContain("dosa"))
+  })
+  it("case-insensitive match: dosa, DOSA, DoSa all return same results", () => {
+    const lower = searchFoods(FOODS, "dosa").map(d => d.id)
+    const upper = searchFoods(FOODS, "DOSA").map(d => d.id)
+    const mixed = searchFoods(FOODS, "DoSa").map(d => d.id)
+    expect(lower).toEqual(upper)
+    expect(lower).toEqual(mixed)
+    expect(lower.length).toBeGreaterThan(0)
+  })
+  it("no-match string returns []", () => {
+    expect(searchFoods(FOODS, "zzznomatch")).toEqual([])
+  })
 })
 
 describe("Property 2: Search Result Correctness", () => {

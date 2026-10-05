@@ -23,7 +23,7 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
     - Export `FOODS` as `Object.freeze(rawFoods.map(dish => Object.freeze(dish)))`
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5_
 
-  - [-]* 2.2 Write unit tests for Food Dataset structure
+  - [x]* 2.2 Write unit tests for Food Dataset structure
     - Verify `FOODS` contains exactly 12 dishes
     - Verify each dish has all required fields
     - Verify all `id` values are unique
@@ -33,7 +33,7 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
     - Verify `isVegetarian` is `false` for Chettinad Chicken and Kothu Parotta
     - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5, 13.6, 1.5_
 
-  - [ ]* 2.3 Write property test for dish schema invariant
+  - [x]* 2.3 Write property test for dish schema invariant
     - **Property 1: Dish Schema Invariant**
     - Iterate over `FOODS`; assert every dish satisfies all field-presence and type constraints
     - Tag comment: `// Feature: foods-of-tamil-nadu, Property 1: Dish Schema Invariant`
@@ -47,39 +47,39 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
     - None of the functions may mutate the input array or any dish object
     - _Requirements: 5.2, 5.3, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7_
 
-  - [ ]* 3.2 Write unit tests for search logic
+  - [x]* 3.2 Write unit tests for search logic
     - Verify empty string returns all 12 dishes
     - Verify a matching name returns only that dish
     - Verify case-insensitive match ("dosa", "DOSA", "DoSa")
     - Verify no-match string returns `[]`
     - _Requirements: 14.1, 14.2, 14.3, 14.4_
 
-  - [ ]* 3.3 Write property tests for search correctness
+  - [x]* 3.3 Write property tests for search correctness
     - **Property 2: Search Result Correctness** — `fc.string()`: every result's `name` contains the search text (case-insensitive); result count ≤ total dishes
     - Tag comment: `// Feature: foods-of-tamil-nadu, Property 2: Search Result Correctness`
     - **Validates: Requirements 5.2, 14.5, 14.6**
 
-  - [ ]* 3.4 Write unit tests for filter logic
+  - [x]* 3.4 Write unit tests for filter logic
     - Verify "All" returns all 12 dishes
     - Verify "Vegetarian" returns only `isVegetarian === true` dishes
     - Verify "Non-Vegetarian" returns only `isVegetarian === false` dishes
     - Verify each category filter returns the correct subset
     - _Requirements: 15.1, 15.2, 15.3, 15.4_
 
-  - [ ]* 3.5 Write property tests for filter correctness and disjoint sets
+  - [x]* 3.5 Write property tests for filter correctness and disjoint sets
     - **Property 3: Filter Result Correctness** — `fc.constantFrom(...allowedFilters)`: every result satisfies the filter predicate
     - **Property 4: Vegetarian / Non-Vegetarian Sets Are Disjoint** — verify intersection is always empty
     - Tag comments: `// Feature: foods-of-tamil-nadu, Property 3: Filter Result Correctness` and `// Feature: foods-of-tamil-nadu, Property 4: Vegetarian / Non-Vegetarian Sets Are Disjoint`
     - **Validates: Requirements 6.2, 6.4, 6.5, 6.6, 15.2, 15.3, 15.4, 15.5, 15.6**
 
-  - [ ]* 3.6 Write unit and property tests for combined search + filter
+  - [x]* 3.6 Write unit and property tests for combined search + filter
     - Unit: verify combined search + filter returns the intersection
     - Unit: verify no-match combination returns `[]`
     - **Property 5: Combined Search + Filter Correctness** — `fc.tuple(fc.string(), fc.constantFrom(...allowedFilters))`: every result satisfies both predicates; combined result is a subset of search-only and filter-only results
     - Tag comment: `// Feature: foods-of-tamil-nadu, Property 5: Combined Search + Filter Correctness and Subset Invariants`
     - **Validates: Requirements 6.7, 16.1, 16.2, 16.3, 16.4, 16.5**
 
-  - [ ]* 3.7 Write property test for dataset immutability
+  - [x]* 3.7 Write property test for dataset immutability
     - **Property 8: Dataset Immutability Under Operations** — snapshot `FOODS` fields before, apply `searchFoods` / `filterFoods` / `applyDiscovery`, deep-equal after
     - Tag comment: `// Feature: foods-of-tamil-nadu, Property 8: Dataset Immutability Under Operations`
     - **Validates: Requirements 1.3, 18.1, 18.2, 18.3, 18.4**
@@ -96,7 +96,7 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
     - Return `{ favourites, toggleFavourite, count }`
     - _Requirements: 8.2, 8.3, 8.4, 8.5, 8.6, 8.7_
 
-  - [ ]* 5.2 Write unit tests for favourites logic
+  - [x]* 5.2 Write unit tests for favourites logic
     - Verify adding an id to empty list → singleton
     - Verify adding the same id twice → still singleton (idempotent)
     - Verify removing an existing id → removed
@@ -104,7 +104,7 @@ Incremental implementation of the Foods of Tamil Nadu React + Vite SPA. Each tas
     - Verify malformed localStorage value → empty favourites, no throw
     - _Requirements: 17.1, 17.2, 17.3, 17.4, 8.7_
 
-  - [ ]* 5.3 Write property tests for favourites
+  - [x]* 5.3 Write property tests for favourites
     - **Property 6: Favourites Set Never Contains Duplicates** — `fc.array(fc.constantFrom(...ids))`: after any sequence of toggles, `Set.size <= distinct ids toggled in`
     - **Property 7: Favourites localStorage Round-Trip** — `fc.array(fc.constantFrom(...ids))`: serialise → deserialise → Set equality
     - Tag comments: `// Feature: foods-of-tamil-nadu, Property 6: Favourites Set Never Contains Duplicates` and `// Feature: foods-of-tamil-nadu, Property 7: Favourites localStorage Round-Trip`
