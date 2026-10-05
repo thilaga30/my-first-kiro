@@ -1,6 +1,6 @@
 ﻿import fc from "fast-check"
 import { FOODS } from "../data/foods.js"
-import { searchFoods, filterFoods, applyDiscovery, ALLOWED_FILTERS } from "../utils/filterFoods.js"
+import { searchFoods, filterFoods, applyDiscovery, applyAllFilters, filterByRegion, getRegions, pickRandom, ALLOWED_FILTERS } from "../utils/filterFoods.js"
 
 const REQ = ["id","name","image","description","region","category","isVegetarian","ingredients","culturalNote"]
 const CATS = ["Breakfast","Main Course","Snack","Dessert/Drink"]
@@ -162,5 +162,88 @@ describe("Property 8: Dataset Immutability", () => {
       expect(FOODS).toHaveLength(snap.length)
       snap.forEach((s,i) => REQ.forEach(k => expect(FOODS[i][k]).toEqual(s[k])))
     }), {numRuns:200})
+  })
+})
+// ── Region filtering ─────────────────────────────────────────
+describe("filterByRegion unit tests", () => {
+  it("All returns all dishes", () => { expect(filterByRegion(FOODS,"All")).toHaveLength(12) })
+  it("Statewide returns only Statewide dishes", () => { filterByRegion(FOODS,"Statewide").forEach(d => expect(d.region).toBe("Statewide")) })
+  it("Chettinad returns only Chettinad dishes", () => { filterByRegion(FOODS,"Chettinad").forEach(d => expect(d.region).toBe("Chettinad")) })
+  it("Madurai returns only Madurai dishes", () => { filterByRegion(FOODS,"Madurai").forEach(d => expect(d.region).toBe("Madurai")) })
+  it("unknown region returns empty array", () => { expect(filterByRegion(FOODS,"Atlantis")).toHaveLength(0) })
+})
+
+describe("getRegions unit tests", () => {
+  it("returns sorted unique regions from dataset", () => {
+    const regions = getRegions(FOODS)
+    expect(regions.length).toBeGreaterThan(0)
+    expect(new Set(regions).size).toBe(regions.length)
+    const sorted = [...regions].sort()
+    expect(regions).toEqual(sorted)
+  })
+  it("all returned regions exist on at least one dish", () => {
+    const regions = getRegions(FOODS)
+    regions.forEach(r => expect(FOODS.some(d => d.region === r)).toBe(true))
+  })
+})
+
+describe("applyAllFilters — region + search + category composition", () => {
+  it("region filter composes with search", () => {
+    const results = applyAllFilters(FOODS, "a", "All", "Statewide")
+    results.forEach(d => {
+      expect(d.region).toBe("Statewide")
+      expect(d.name.toLowerCase()).toContain("a")
+    })
+  })
+  it("region + category filter returns intersection", () => {
+    const results = applyAllFilters(FOODS, "", "Breakfast", "Statewide")
+    results.forEach(d => {
+      expect(d.region).toBe("Statewide")
+      expect(d.category).toBe("Breakfast")
+    })
+  })
+  it("no-match triple combination returns empty array", () => {
+    expect(applyAllFilters(FOODS, "zzz", "Breakfast", "Madurai")).toHaveLength(0)
+  })
+  it("All region + All filter returns all 12 dishes", () => {
+    expect(applyAllFilters(FOODS, "", "All", "All")).toHaveLength(12)
+  })
+})
+
+describe("pickRandom unit tests", () => {
+  it("returns null for empty array", () => { expect(pickRandom([])).toBeNull() })
+  it("returns null for null/undefined", () => { expect(pickRandom(null)).toBeNull(); expect(pickRandom(undefined)).toBeNull() })
+  it("returns the only element for a singleton array", () => {
+    const dish = FOODS[0]
+    expect(pickRandom([dish])).toBe(dish)
+  })
+  it("always returns a dish that is in the input array", () => {
+    for (let i = 0; i < 50; i++) {
+      const result = pickRandom(FOODS)
+      expect(FOODS).toContain(result)
+    }
+  })
+})
+
+describe("Property: pickRandom always selects from available results", () => {
+  // Feature: foods-of-tamil-nadu, Property: pickRandom always selects from visible dishes
+  it("for any non-empty subset, result is always a member of that subset", () => {
+    fc.assert(
+      fc.property(
+        fc.string({maxLength:20}),
+        fc.constantFrom(...ALLOWED_FILTERS),
+        (t, f) => {
+          const subset = applyDiscovery(FOODS, t, f)
+          if (subset.length === 0) {
+            expect(pickRandom(subset)).toBeNull()
+          } else {
+            const pick = pickRandom(subset)
+            expect(pick).not.toBeNull()
+            expect(subset).toContain(pick)
+          }
+        }
+      ),
+      { numRuns: 200 }
+    )
   })
 })

@@ -1,15 +1,24 @@
 import { useState } from 'react'
 import { FOODS } from '../data/foods.js'
-import { applyDiscovery } from '../utils/filterFoods.js'
+import { applyAllFilters, getRegions } from '../utils/filterFoods.js'
 
 /**
- * Manages search text and active filter, derives visible dishes.
+ * Manages search text, active filter, and active region.
+ * Derives visible dishes from the full composition of all three.
  */
 export function useDiscovery() {
   const [searchText, setSearchText] = useState('')
   const [activeFilter, setActiveFilter] = useState('All')
+  const [activeRegion, setActiveRegion] = useState('All')
 
-  const visibleDishes = applyDiscovery(FOODS, searchText, activeFilter)
+  const visibleDishes = applyAllFilters(FOODS, searchText, activeFilter, activeRegion)
+  const regions = getRegions(FOODS)
 
-  return { searchText, setSearchText, activeFilter, setActiveFilter, visibleDishes }
+  return {
+    searchText, setSearchText,
+    activeFilter, setActiveFilter,
+    activeRegion, setActiveRegion,
+    visibleDishes,
+    regions,
+  }
 }

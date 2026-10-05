@@ -54,3 +54,46 @@ export const ALLOWED_FILTERS = [
   'Snack',
   'Dessert/Drink',
 ]
+
+/**
+ * Filter dishes by region. 'All' returns all dishes.
+ * @param {readonly object[]} dishes
+ * @param {string} region
+ * @returns {object[]}
+ */
+export function filterByRegion(dishes, region) {
+  if (!region || region === 'All') return [...dishes]
+  return dishes.filter(d => d.region === region)
+}
+
+/**
+ * Derive the unique sorted list of regions from the dataset.
+ * @param {readonly object[]} dishes
+ * @returns {string[]}
+ */
+export function getRegions(dishes) {
+  const regions = [...new Set(dishes.map(d => d.region))].sort()
+  return regions
+}
+
+/**
+ * Apply region, then search, then category filter — full three-way composition.
+ * @param {readonly object[]} dishes
+ * @param {string} searchText
+ * @param {string} filter
+ * @param {string} region
+ * @returns {object[]}
+ */
+export function applyAllFilters(dishes, searchText, filter, region) {
+  return filterFoods(searchFoods(filterByRegion(dishes, region), searchText), filter)
+}
+
+/**
+ * Pick one random dish from the given array. Returns null if empty.
+ * @param {object[]} dishes
+ * @returns {object|null}
+ */
+export function pickRandom(dishes) {
+  if (!dishes || dishes.length === 0) return null
+  return dishes[Math.floor(Math.random() * dishes.length)]
+}
